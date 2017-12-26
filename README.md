@@ -1,0 +1,2 @@
+# ShallysOS
+A simple OS
