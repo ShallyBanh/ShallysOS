@@ -9,8 +9,6 @@ Because why not. OS's are sooo cool. I feel like as a student you learn so much 
 
 ## Building and Running ShallysOs
 
-Currently, all i have implemented right now is a simple kernel with a bare bone boot sector that boots it.
-
 The tools use to build ShallysOS are:
 * gcc
 * gmp
@@ -20,7 +18,7 @@ The tools use to build ShallysOS are:
 * qemu
 
 To run just run
-> make
+> qemu-system-i386 os-image.bin
 
 and ShallysOS should boot up
 

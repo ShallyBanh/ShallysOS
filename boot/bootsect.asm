@@ -14,12 +14,12 @@ KERNEL_OFFSET equ 0x1000 ; The same one we used when linking the kernel
     jmp $ ; Never executed
 
 
-%include "bootSectStuff/boot_sect_print.asm"
-%include "bootSectStuff/boot_sect_print_hex.asm"
-%include "bootSectStuff/boot_sect_disk.asm"
-%include "bootSectStuff/32bit-gdt.asm"
-%include "bootSectStuff/32bit-print.asm"
-%include "bootSectStuff/32bit-switch.asm"
+%include "boot/boot_sect_print.asm"
+%include "boot/boot_sect_print_hex.asm"
+%include "boot/boot_sect_disk.asm"
+%include "boot/32bit-gdt.asm"
+%include "boot/32bit-print.asm"
+%include "boot/32bit-switch.asm"
 
 [bits 16]
 load_kernel:
@@ -45,6 +45,7 @@ BOOT_DRIVE db 0 ; It is a good idea to store it in memory because 'dl' may get o
 MSG_REAL_MODE db "Started in 16-bit Real Mode", 0
 MSG_PROT_MODE db "Landed in 32-bit Protected Mode", 0
 MSG_LOAD_KERNEL db "Loading kernel into memory", 0
+MSG_RETURNED_KERNEL db "Returned from kernel. Error?", 0
 
 ; padding
 times 510 - ($-$$) db 0
