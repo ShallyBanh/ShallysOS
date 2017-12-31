@@ -1,25 +1,26 @@
+[bits 16]
 [org 0x7c00]
 KERNEL_OFFSET equ 0x1000 ; The same one we used when linking the kernel
 
-    mov [BOOT_DRIVE], dl ; Remember that the BIOS sets us the boot drive in 'dl' on boot
-    mov bp, 0x9000
-    mov sp, bp
+mov [BOOT_DRIVE], dl ; Remember that the BIOS sets us the boot drive in 'dl' on boot
+mov bp, 0x9000
+mov sp, bp
 
-    mov bx, MSG_REAL_MODE 
-    call print
-    call print_nl
+mov bx, MSG_REAL_MODE 
+call print
+call print_nl
 
-    call load_kernel ; read the kernel from disk
-    call switch_to_pm ; disable interrupts, load GDT,  etc. Finally jumps to 'BEGIN_PM'
-    jmp $ ; Never executed
+call load_kernel ; read the kernel from disk
+call switch_to_pm ; disable interrupts, load GDT,  etc. Finally jumps to 'BEGIN_PM'
+jmp $ ; Never executed
 
 
 %include "boot/boot_sect_print.asm"
 %include "boot/boot_sect_print_hex.asm"
 %include "boot/boot_sect_disk.asm"
-%include "boot/32bit-gdt.asm"
-%include "boot/32bit-print.asm"
-%include "boot/32bit-switch.asm"
+%include "boot/32bit_gdt.asm"
+%include "boot/32bit_print.asm"
+%include "boot/32bit_switch.asm"
 
 [bits 16]
 load_kernel:

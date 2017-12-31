@@ -23,4 +23,4 @@ To run just run
 and ShallysOS should boot up
 
 ## ToDo 
-- Wayyyyy to much (I'm not even half way done reading the guide)
+- Alot 
