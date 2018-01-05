@@ -1,5 +1,43 @@
+print:
+    pusha
+
+; keep this in mind:
+; while (string[i] != 0) { print string[i]; i++ }
+
+; the comparison for string end (null byte)
+start:
+    mov al, [bx] ; 'bx' is the base address for the string
+    cmp al, 0 
+    je done
+
+    ; the part where we print with the BIOS help
+    mov ah, 0x0e
+    int 0x10 ; 'al' already contains the char
+
+    ; increment pointer and do next loop
+    add bx, 1
+    jmp start
+
+done:
+    popa
+    ret
+
+
+
+print_nl:
+    pusha
+    
+    mov ah, 0x0e
+    mov al, 0x0a ; newline char
+    int 0x10
+    mov al, 0x0d ; carriage return
+    int 0x10
+    
+    popa
+    ret
+
+; our print in hex methods
 ; receiving the data in 'dx'
-; For the examples we'll assume that we're called with dx=0x1234
 print_hex:
     pusha
 
@@ -22,20 +60,15 @@ hex_loop:
     add al, 7 ; 'A' is ASCII 65 instead of 58, so 65-58=7
 
 step2:
-    ; 2. get the correct position of the string to place our ASCII char
-    ; bx <- base address + string length - index of char
     mov bx, HEX_OUT + 5 ; base + length
     sub bx, cx  ; our index variable
     mov [bx], al ; copy the ASCII char on 'al' to the position pointed by 'bx'
     ror dx, 4 ; 0x1234 -> 0x4123 -> 0x3412 -> 0x2341 -> 0x1234
 
-    ; increment index and loop
     add cx, 1
     jmp hex_loop
 
 end:
-    ; prepare the parameter and call the function
-    ; remember that print receives parameters in 'bx'
     mov bx, HEX_OUT
     call print
 

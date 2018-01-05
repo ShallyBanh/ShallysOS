@@ -15,9 +15,8 @@ call switch_to_pm ; disable interrupts, load GDT,  etc. Finally jumps to 'BEGIN_
 jmp $ ; Never executed
 
 
-%include "boot/boot_sect_print.asm"
-%include "boot/boot_sect_print_hex.asm"
-%include "boot/boot_sect_disk.asm"
+%include "boot/bootsectPrint.asm"
+%include "boot/bootsectDisk.asm"
 %include "boot/32bit_gdt.asm"
 %include "boot/32bit_print.asm"
 %include "boot/32bit_switch.asm"
