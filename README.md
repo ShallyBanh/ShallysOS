@@ -12,7 +12,7 @@ Currently all i have is a simple shell that echos back what the user enters on t
 
 So after, i implement a filesystem i can expand on this and add some basic commands like mkdir, cd, ls, pwd, etc.
 
-![ScreenShot](https://github.com/ShallyBanh/WhereAmI/blob/master/docs/currentProgress.png)
+![ScreenShot](https://github.com/ShallyBanh/ShallysOS/blob/master/docs/currentProgress.png)
 
 ## Building and Running ShallysOs
 
