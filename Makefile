@@ -24,7 +24,7 @@ kernel.elf: boot/kernel_entry.o ${OBJ}
 	/usr/local/i386elfgcc/bin/i386-elf-ld -o $@ -Ttext 0x1000 $^ 
 
 run: os-image.bin
-	qemu-system-i386 -fda os-image.bin -boot c
+	qemu-system-i386 -fda os-image.bin
 
 # Open the connection to qemu and load our kernel-object file with symbols
 debug: os-image.bin kernel.elf
