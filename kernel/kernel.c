@@ -3,7 +3,7 @@
 #include "kernel.h"
 #include "../libc/string.h"
 
-void main() {
+void kernel_main() {
     isr_install();
     irq_install();
 
